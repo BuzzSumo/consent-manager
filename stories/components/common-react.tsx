@@ -14,7 +14,7 @@ export const bannerContent = (
     .
   </span>
 )
-export const bannerSubContent = 'You can manage your preferences here!'
+export const bannerSubContent = 'No, take me to settings'
 export const preferencesDialogTitle = 'Website Data Collection Preferences'
 export const preferencesDialogContent = (
   <div>

@@ -156,7 +156,17 @@ const Container: React.FC<ContainerProps> = props => {
 
   const handleSave = () => {
     toggleDialog(false)
+    props.setPreferences(props.preferences)
+    props.saveConsent()
+  }
 
+  const handleAgree = () => {
+    const truePreferences = Object.keys(props.preferences).reduce((acc, category) => {
+      acc[category] = true
+      return acc
+    }, {})
+
+    props.setPreferences(truePreferences)
     props.saveConsent()
   }
 
@@ -186,6 +196,7 @@ const Container: React.FC<ContainerProps> = props => {
         <Banner
           innerRef={current => (banner = { current })}
           onClose={onClose}
+          onAgree={handleAgree}
           onChangePreferences={() => toggleDialog(true)}
           content={props.bannerContent}
           subContent={props.bannerSubContent}

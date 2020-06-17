@@ -18,8 +18,10 @@ export const DefaultButton = styled('button')`
   ${baseStyles};
   margin-right: 8px;
   background-color: #fff;
-  background-image: linear-gradient(to top, rgba(67, 90, 111, 0.041), rgba(255, 255, 255, 0.041));
   box-shadow: inset 0 0 0 1px rgba(67, 90, 111, 0.146), inset 0 -1px 1px 0 rgba(67, 90, 111, 0.079);
+  color: #239edb;
+  text-transform: uppercase;
+  font-family: Roboto;
   &:hover {
     background-image: linear-gradient(to top, rgba(67, 90, 111, 0.057), rgba(67, 90, 111, 0.025));
     box-shadow: inset 0 0 0 1px rgba(67, 90, 111, 0.255),
@@ -38,10 +40,11 @@ export const DefaultButton = styled('button')`
 
 export const GreenButton = styled('button')`
   ${baseStyles};
-  background-color: #47b881;
-  background-image: linear-gradient(to top, #3faf77, #47b881);
+  background-color: #239edb;
   box-shadow: inset 0 0 0 1px rgba(67, 90, 111, 0.204), inset 0 -1px 1px 0 rgba(67, 90, 111, 0.204);
   color: #fff;
+  text-transform: uppercase;
+  font-family: Roboto;
   &:hover {
     background-image: linear-gradient(to top, #37a56d, #3faf77);
   }
@@ -58,10 +61,11 @@ export const GreenButton = styled('button')`
 
 export const RedButton = styled('button')`
   ${baseStyles};
-  background-color: #f36331;
-  background-image: linear-gradient(to top, #f4541d, #f36331);
+  background-color: #fc4870;
   box-shadow: inset 0 0 0 1px rgba(67, 90, 111, 0.204), inset 0 -1px 1px 0 rgba(67, 90, 111, 0.204);
   color: #fff;
+  text-transform: uppercase;
+  font-family: Roboto;
   &:hover {
     background-image: linear-gradient(to top, #f4450a, #f4541d);
   }

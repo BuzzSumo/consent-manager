@@ -20,7 +20,7 @@ const bannerContent = (
     .
   </span>
 )
-const bannerSubContent = 'You can manage your preferences here!'
+const bannerSubContent = 'No, take me to settings'
 const preferencesDialogTitle = 'Website Data Collection Preferences'
 const preferencesDialogContent = (
   <div>
