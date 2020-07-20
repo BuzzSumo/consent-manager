@@ -49,6 +49,9 @@ const InputCell = styled('td')`
   input {
     vertical-align: middle;
   }
+  input[type=radio] {
+    appearance: radio !important;
+  }
   label {
     display: block;
     margin-bottom: 4px;
