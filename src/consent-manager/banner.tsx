@@ -57,15 +57,19 @@ const Content = styled('div')`
 
 const Heading = styled('h2')`
   font-weight: 600;
-  font-size: 33px;
+  font-size: 28px;
   letter-spacing: -0.03em;
   color: #303138;
-  line-height: 33px;
+  line-height: 28px;
   border-bottom-style: solid;
   border-bottom-width: 1px;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
+  margin-top: 0rem;
   border-color: rgba(0, 0, 0, 0.07);
+  @media (max-width: 37.5em) {
+    font-size: 24px;
+  }
 `
 
 const Overlay = styled('div')`
@@ -163,6 +167,11 @@ const AgreeButton = styled('button')`
   -webkit-appearance: none;
   -webkit-font-smoothing: antialiased;
   -webkit-border-image: none;
+  @media (max-width: 400px) {
+    display: block !important;
+    margin-left: 0;
+    margin-top: 16px;
+  }
 `
 
 const SettingsButton = styled('button')`
@@ -173,6 +182,9 @@ const SettingsButton = styled('button')`
   font-weight: 600;
   line-height: 1.5;
   font-style: normal;
+  @media (max-width: 400px) {
+    display: block !important;
+  }
 `
 
 const ButtonGroup = styled('div')`
@@ -182,7 +194,7 @@ const ButtonGroup = styled('div')`
 const P = styled('p')`
   margin: 0;
   &:not(:last-child) {
-    margin-bottom: 6px;
+    margin-bottom: 30px;
   }
 `
 
