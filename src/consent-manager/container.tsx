@@ -190,6 +190,7 @@ const Container: React.FC<ContainerProps> = props => {
     props.resetPreferences()
   }
 
+  console.log('props', props)
   return (
     <div>
       {showBanner && props.isConsentRequired && props.newDestinations.length > 0 && (
