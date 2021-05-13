@@ -1,5 +1,28 @@
 # Changelog
 
+## 5.2.0(May 11, 2021)
+
+- [#152](https://github.com/segmentio/consent-manager/pull/152) Add configurable expirey date for the preferences cookie
+- Chore: Dependency upgrades
+
+## 5.1.0(Nov 17, 2020)
+
+- [#123](https://github.com/segmentio/consent-manager/pull/123) Fixed an issue where the react state wasn't being updated after the user updates the preferences via the `.savePreferences` API. This change also slightly changes how the Cancel confirmation modal is displayed.
+
+## 5.0.2(Nov 9, 2020)
+
+- [#111](https://github.com/segmentio/consent-manager/pull/111) Added missing TypeScript declarations in packaged output
+
+### Added
+
+- [#110](https://github.com/segmentio/consent-manager/pull/110) Added `cdnHost` property to allow using non-default CDN host
+
+## 5.0.1(July 13, 2020)
+
+### Added
+
+- [#110](https://github.com/segmentio/consent-manager/pull/110) Added `cdnHost` property to allow using non-default CDN host
+
 ## 4.1.0(Dec 11, 2019)
 
 ### Added

@@ -81,6 +81,8 @@ export interface ConsentManagerProps {
   shouldRequireConsent?: () => Promise<boolean> | boolean
   implyConsentOnInteraction?: boolean
   cookieDomain?: string
+  cookieName?: string
+  cookieExpires?: number
   bannerContent: React.ReactNode
   bannerSubContent?: string
   bannerTextColor?: string
@@ -94,4 +96,5 @@ export interface ConsentManagerProps {
   initialPreferences?: CategoryPreferences
   customCategories?: CustomCategories
   defaultDestinationBehavior?: DefaultDestinationBehavior
+  cdnHost?: string
 }

@@ -1,6 +1,6 @@
 {
   "name": "@segment/consent-manager",
-  "version": "5.0.0",
+  "version": "5.2.0",
   "description": "Drop-in consent management plugin for analytics.js",
   "keywords": [
     "gdpr",
@@ -12,11 +12,13 @@
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
+  "types": "types/src/index.d.ts",
   "sideEffects": false,
   "files": [
     "commonjs",
     "esm",
-    "standalone"
+    "standalone",
+    "types"
   ],
   "scripts": {
     "test": "jest src/__tests__",
@@ -27,7 +29,7 @@
     "build-esm": "tsc --module es2015 --outDir esm --inlineSourceMap",
     "build-standalone": "webpack",
     "build": "concurrently --names 'commonjs,esm,standalone' 'yarn run build-commonjs' 'yarn run build-esm' 'yarn run build-standalone'",
-    "clean": "rm -rf commonjs esm standalone storybook-static",
+    "clean": "rm -rf commonjs esm standalone storybook-static types",
     "deploy-storybook": "storybook-to-ghpages",
     "standalone-hash": "shasum -b -a 256 standalone/consent-manager.js | xxd -r -p | base64",
     "build-storybook": "yarn build-standalone && build-storybook && cp -r ./standalone ./storybook-static/standalone",
@@ -88,7 +90,7 @@
     "lodash-es": "^4.17.10",
     "nock": "^9.2.5",
     "preact": "^10.0.0",
-    "prettier": "1.18.2",
+    "prettier": "^1.19.1",
     "pretty-quick": "^1.11.1",
     "prismjs": "^1.17.1",
     "raw-loader": "^3.1.0",

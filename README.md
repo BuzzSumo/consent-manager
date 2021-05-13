@@ -12,7 +12,7 @@ At its core, the Consent Manager empowers your visitors to control and customize
 
 It works by taking control of the analytics.js load process to only load destinations that the user has consented to and not loading analytics.js at all if the user has opted out of everything. The user's tracking preferences are saved to a cookie and sent as an identify trait (if they haven't opted out of everything) so that you can also access them on the server-side and from destinations (warehouse).
 
-*Segment works to ensure the Consent Manager Tech Demo works with most of our product pipeline. We cannot ensure it works in your specific implementation or website. Please contact our Professional Services team for implementation support. Please see the License.txt included.*
+_Segment works to ensure the Consent Manager Tech Demo works with most of our product pipeline. We cannot ensure it works in your specific implementation or website. Please contact our Professional Services team for implementation support. Please see the License.txt included._
 
 ### Features
 
@@ -27,6 +27,7 @@ It works by taking control of the analytics.js load process to only load destina
 - **5.0.0**: Consent Manager will add consent metadata to the context of all track calls:
 
 Track call message payloads will be extended to include Consent metadata in the `context` object:
+
 ```
 {
   "context": {
@@ -58,7 +59,8 @@ Track call message payloads will be extended to include Consent metadata in the 
 }
 ```
 
-**Breaking Changes:** Version 5.0.0 and above require that your analytics.js snippet include the method `addSourceMiddleware` in the `analytics.methods` array: 
+**Breaking Changes:** Version 5.0.0 and above require that your analytics.js snippet include the method `addSourceMiddleware` in the `analytics.methods` array:
+
 ```
 analytics.methods = [
   'trackSubmit',
@@ -194,7 +196,7 @@ All the options are supported. The callback function also receives these exports
 
 ### ConsentManager
 
-The `ConsentManager` React component is a prebuilt consent manager UI (it's the one we use on https://segment.com) that uses the [ConsentManagerBuilder][] component under the hood. To use it, just mount the component where you want the consent banner to appear and pass in your own custom copy.
+The `ConsentManager` React component is a prebuilt consent manager UI (it's the one we use on <https://segment.com>) that uses the [ConsentManagerBuilder][] component under the hood. To use it, just mount the component where you want the consent banner to appear and pass in your own custom copy.
 
 #### Props
 
@@ -272,6 +274,13 @@ Type: `string`<br>
 Default: the [top most domain][top-domain] and all sub domains
 
 The domain the `tracking-preferences` cookie should be scoped to.
+
+##### cookieExpires
+
+Type: `number`<br>
+Default: 365
+
+The number of dates until the `tracking-preferences` cookie should expire.
 
 ##### bannerContent
 
@@ -390,6 +399,13 @@ export default function() {
 }
 ```
 
+##### cdnHost
+
+Type: `string`<br>
+Default: `cdn.segment.com`
+
+The CDN to fetch list of integrations from
+
 ### ConsentManagerBuilder
 
 The `ConsentManagerBuilder` React component is a low level render props component for building your own consent manager UI. It abstracts away all the logic for fetching destinations, checking/saving consent and loading analytics.js.
@@ -443,7 +459,7 @@ Options:
 - `imply` - Newly detected destinations are by default, enabled or disabled, depending on the user's consent to the consent group that the new destination belongs to.
   - For example, if a user has already consented to the "marketingAndAnalytics" category, and we detect a new destination with category "Analytics", that destination will be enabled.
 
-This setting will also also affect replays to new destinations. Only `disable` and `enable` will apply to these replays. Setting `defaultDestinationBehavior` to `imply` here will be interpreted as `enable` during a replay. 
+This setting will also also affect replays to new destinations. Only `disable` and `enable` will apply to these replays. Setting `defaultDestinationBehavior` to `imply` here will be interpreted as `enable` during a replay.
 
 ##### mapCustomPreferences
 
@@ -458,6 +474,20 @@ Type: `string`<br>
 Default: the [top most domain][top-domain] and all sub domains
 
 The domain the `tracking-preferences` cookie should be scoped to.
+
+##### cookieName
+
+Type: `string`<br>
+Default: `tracking-preferences`
+
+The cookie name that should be used to store tracking preferences cookie
+
+#### cookieExpires
+
+Type: `number`<br>
+Default: 365
+
+The number of dates until the `tracking-preferences` cookie should expire.
 
 #### Render Props
 
@@ -589,6 +619,13 @@ export default function() {
 }
 ```
 
+##### cdnHost
+
+Type: `string`<br>
+Default: `cdn.segment.com`
+
+The CDN to fetch list of integrations from
+
 ### Utility functions
 
 - `openConsentManager()` - Opens the [ConsentManager][] preferences dialog.
@@ -599,7 +636,7 @@ export default function() {
 To run our storybook locally, simply do:
 
 ```
-$ yarn dev
+yarn dev
 ```
 
 and the storybook should be opened in your browser. We recommend adding a new story for new features, and testing against existing stories when making bug fixes.
@@ -609,8 +646,8 @@ and the storybook should be opened in your browser. We recommend adding a new st
 This package follows semantic versioning. To publish a new version:
 
 ```
-$ npm version <new-version>
-$ npm publish
+npm version <new-version>
+npm publish
 ```
 
 ## License

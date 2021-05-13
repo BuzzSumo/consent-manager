@@ -19,6 +19,8 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
     implyConsentOnInteraction: false,
     onError: undefined,
     cookieDomain: undefined,
+    cookieName: undefined,
+    cookieExpires: undefined,
     customCategories: undefined,
     bannerTextColor: '#51505a',
     bannerSubContent: 'You can change your preferences at any time.',
@@ -35,6 +37,8 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       shouldRequireConsent,
       implyConsentOnInteraction,
       cookieDomain,
+      cookieName,
+      cookieExpires,
       bannerContent,
       bannerSubContent,
       bannerTextColor,
@@ -45,6 +49,7 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       cancelDialogContent,
       customCategories,
       defaultDestinationBehavior,
+      cdnHost,
       onError
     } = this.props
 
@@ -55,10 +60,13 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
         otherWriteKeys={otherWriteKeys}
         shouldRequireConsent={shouldRequireConsent}
         cookieDomain={cookieDomain}
+        cookieName={cookieName}
+        cookieExpires={cookieExpires}
         initialPreferences={this.getInitialPreferences()}
         mapCustomPreferences={this.handleMapCustomPreferences}
         customCategories={customCategories}
         defaultDestinationBehavior={defaultDestinationBehavior}
+        cdnHost={cdnHost}
       >
         {({
           destinations,
@@ -72,31 +80,35 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
           havePreferencesChanged,
           workspaceAddedNewDestinations
         }) => {
-          return <Container
-            customCategories={customCategories}
-            destinations={destinations}
-            newDestinations={newDestinations}
-            preferences={preferences}
-            isConsentRequired={isConsentRequired}
-            setPreferences={setPreferences}
-            resetPreferences={resetPreferences}
-            saveConsent={saveConsent}
-            closeBehavior={this.props.closeBehavior}
-            implyConsentOnInteraction={implyConsentOnInteraction ?? ConsentManager.defaultProps.implyConsentOnInteraction}
-            bannerContent={bannerContent}
-            bannerSubContent={bannerSubContent}
-            bannerTextColor={bannerTextColor || ConsentManager.defaultProps.bannerTextColor}
-            bannerBackgroundColor={
-              bannerBackgroundColor || ConsentManager.defaultProps.bannerBackgroundColor
-            }
-            preferencesDialogTitle={preferencesDialogTitle}
-            preferencesDialogContent={preferencesDialogContent}
-            cancelDialogTitle={cancelDialogTitle}
-            cancelDialogContent={cancelDialogContent}
-            havePreferencesChanged={havePreferencesChanged}
-            defaultDestinationBehavior={defaultDestinationBehavior}
-            workspaceAddedNewDestinations={workspaceAddedNewDestinations}
-          />
+          return (
+            <Container
+              customCategories={customCategories}
+              destinations={destinations}
+              newDestinations={newDestinations}
+              preferences={preferences}
+              isConsentRequired={isConsentRequired}
+              setPreferences={setPreferences}
+              resetPreferences={resetPreferences}
+              saveConsent={saveConsent}
+              closeBehavior={this.props.closeBehavior}
+              implyConsentOnInteraction={
+                implyConsentOnInteraction ?? ConsentManager.defaultProps.implyConsentOnInteraction
+              }
+              bannerContent={bannerContent}
+              bannerSubContent={bannerSubContent}
+              bannerTextColor={bannerTextColor || ConsentManager.defaultProps.bannerTextColor}
+              bannerBackgroundColor={
+                bannerBackgroundColor || ConsentManager.defaultProps.bannerBackgroundColor
+              }
+              preferencesDialogTitle={preferencesDialogTitle}
+              preferencesDialogContent={preferencesDialogContent}
+              cancelDialogTitle={cancelDialogTitle}
+              cancelDialogContent={cancelDialogContent}
+              havePreferencesChanged={havePreferencesChanged}
+              defaultDestinationBehavior={defaultDestinationBehavior}
+              workspaceAddedNewDestinations={workspaceAddedNewDestinations}
+            />
+          )
         }}
       </ConsentManagerBuilder>
     )
@@ -136,7 +148,7 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
       }
 
       destinations.forEach(destination => {
-        // Mark custom categories 
+        // Mark custom categories
         Object.entries(customCategories).forEach(([categoryName, { integrations }]) => {
           const consentAlreadySetToFalse = destinationPreferences[destination.id] === false
           const shouldSetConsent = integrations.includes(destination.id)
@@ -163,12 +175,18 @@ export default class ConsentManager extends PureComponent<ConsentManagerProps, {
 
     for (const destination of destinations) {
       // Mark advertising destinations
-      if (ADVERTISING_CATEGORIES.find(c => c === destination.category) && destinationPreferences[destination.id] !== false) {
+      if (
+        ADVERTISING_CATEGORIES.find(c => c === destination.category) &&
+        destinationPreferences[destination.id] !== false
+      ) {
         destinationPreferences[destination.id] = customPrefs.advertising
       }
 
       // Mark function destinations
-      if (FUNCTIONAL_CATEGORIES.find(c => c === destination.category) && destinationPreferences[destination.id] !== false) {
+      if (
+        FUNCTIONAL_CATEGORIES.find(c => c === destination.category) &&
+        destinationPreferences[destination.id] !== false
+      ) {
         destinationPreferences[destination.id] = customPrefs.functional
       }
 
