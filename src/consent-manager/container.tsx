@@ -110,6 +110,10 @@ const Container: React.FC<ContainerProps> = props => {
 
   const showDialog = () => toggleDialog(true)
 
+  const loadOptimizely = () => {
+    (window as any).global_load_optimizely && (window as any).global_load_optimizely();
+  }
+
   React.useEffect(() => {
     emitter.on('openDialog', showDialog)
     if (props.isConsentRequired && props.implyConsentOnInteraction) {
@@ -164,6 +168,10 @@ const Container: React.FC<ContainerProps> = props => {
     toggleDialog(false)
     props.setPreferences(props.preferences)
     props.saveConsent()
+
+    if (props.preferences?.marketingAndAnalytics) {
+      loadOptimizely();
+    }
   }
 
   const handleAgree = () => {
@@ -174,6 +182,7 @@ const Container: React.FC<ContainerProps> = props => {
 
     props.setPreferences(truePreferences)
     props.saveConsent()
+    loadOptimizely();
   }
 
   const handleCancel = () => {
