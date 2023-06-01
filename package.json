@@ -43,7 +43,7 @@
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
     "nanoid": "^1.0.2",
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.8.1",
     "react-emotion": "^9.1.2"
   },
   "devDependencies": {
